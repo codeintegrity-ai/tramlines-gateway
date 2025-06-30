@@ -48,5 +48,7 @@ jobs:
         run: |
           uv sync --group docs
 
-      - name: Deploy documentation
-        run: uv run mkdocs gh-deploy --force
+      - name: Deploy documentation with custom domain
+        run: |
+          echo "docs.tramlines.io" > docs/CNAME
+          uv run mkdocs gh-deploy --force
