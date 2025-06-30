@@ -1,0 +1,66 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+# Code Quality Guidelines
+
+## Environment & Dependencies
+- Use `source ./venv/bin/activate` for virtual environment activation
+- Use `uv` for Python package management and command execution
+- Run tests with `source .venv/bin/activate && uv run pytest`
+- Run tests with coverage using `uv run pytest --cov tests/`
+
+## Code Structure & Organization
+- Never generate code inside `__init__.py` files - keep them empty or minimal
+- Use clear, descriptive module and package names
+- Follow the single responsibility principle for functions and classes
+- Keep functions small and focused (ideally under 20 lines)
+
+## Python 3.12+ Best Practices
+- Use type hints consistently with modern syntax (PEP 585, 604)
+  - Use `list[str]` instead of `List[str]`
+  - Use `dict[str, int]` instead of `Dict[str, int]`
+  - Use `X | Y` instead of `Union[X, Y]`
+  - Use `X | None` instead of `Optional[X]`
+- Leverage match-case statements for complex conditionals (PEP 634)
+- Use f-strings for string formatting
+- Prefer pathlib over os.path for file operations
+- Use dataclasses or Pydantic models for structured data
+
+## Code Quality Standards
+- Keep code clean, readable, and concise
+- Never duplicate code - extract common functionality into functions/classes
+- Use meaningful variable and function names
+- Follow PEP 8 style guidelines
+- Maximum line length of 88 characters (Black formatter standard)
+- Use docstrings for all public functions, classes, and modules
+
+## Type Safety & Error Handling
+- Never use `hasattr()` - this is a code smell indicating runtime type checking instead of proper typing
+- Use `isinstance()` with proper type checking when needed
+- Prefer `match-case` over multiple `isinstance()` checks
+- Use custom exceptions for domain-specific errors
+- Handle exceptions at the appropriate level
+
+## Testing & Quality Assurance
+- Write comprehensive unit tests for all functionality
+- Use pytest fixtures for test setup
+- Aim for >90% test coverage
+- Use type checkers (mypy, pyright) in CI/CD
+- Use linters (ruff, flake8) and formatters (black, isort)
+- Write integration tests for critical workflows
+
+## Performance & Memory
+- Use generators and iterators for large datasets
+- Prefer list/dict/set comprehensions over loops when appropriate
+- Profile code for performance bottlenecks when needed
+- Consider async/await for I/O-bound operations
+
+## Security & Best Practices
+- Validate all inputs at system boundaries
+- Use secure defaults for configuration
+- Never log sensitive information
+- Use secrets module for cryptographic operations
+- Follow principle of least privilege
+- Sanitize user inputs to prevent injection attacks

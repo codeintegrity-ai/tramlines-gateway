@@ -1,0 +1,80 @@
+<svg width="800" height="400" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="800" height="400" fill="#f8f9fa"/>
+  
+  <!-- Title -->
+  <text x="400" y="30" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#333">Tramlines Proxy Architecture</text>
+  
+  <!-- MCP Client -->
+  <rect x="50" y="150" width="120" height="80" rx="10" fill="#4285f4" stroke="#1a73e8" stroke-width="2"/>
+  <text x="110" y="180" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="white">MCP Client</text>
+  <text x="110" y="195" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#e8f0fe">(Claude, ChatGPT,</text>
+  <text x="110" y="208" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#e8f0fe">Custom Apps)</text>
+  
+  <!-- Arrow from Client to Guard -->
+  <path d="M 170 190 L 240 190" stroke="#666" stroke-width="2" marker-end="url(#arrowhead)"/>
+  <text x="205" y="185" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#666">Tool Calls</text>
+  
+  <!-- Tramlines Proxy -->
+  <rect x="260" y="120" width="150" height="140" rx="10" fill="#ea4335" stroke="#d33b2c" stroke-width="2"/>
+  <text x="335" y="145" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="white">Tramlines</text>
+  <text x="335" y="160" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="white">Proxy</text>
+  
+  <!-- Guard Components -->
+  <rect x="270" y="170" width="130" height="20" rx="3" fill="#fff" fill-opacity="0.2"/>
+  <text x="335" y="183" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="white">🛡️ Policy Engine</text>
+  
+  <rect x="270" y="195" width="130" height="20" rx="3" fill="#fff" fill-opacity="0.2"/>
+  <text x="335" y="208" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="white">📊 Session Tracking</text>
+  
+  <rect x="270" y="220" width="130" height="20" rx="3" fill="#fff" fill-opacity="0.2"/>
+  <text x="335" y="233" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="white">🔍 Attack Detection</text>
+  
+  <!-- Arrow from Guard to Servers -->
+  <path d="M 410 190 L 480 190" stroke="#666" stroke-width="2" marker-end="url(#arrowhead)"/>
+  <text x="445" y="185" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#666">Filtered</text>
+  
+  <!-- MCP Servers Container -->
+  <rect x="500" y="80" width="250" height="220" rx="10" fill="#34a853" stroke="#137333" stroke-width="2"/>
+  <text x="625" y="105" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="white">MCP Servers</text>
+  
+  <!-- Individual Servers -->
+  <rect x="520" y="120" width="100" height="50" rx="5" fill="#fff" stroke="#137333" stroke-width="1"/>
+  <text x="570" y="140" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" font-weight="bold" fill="#137333">📁 File System</text>
+  <text x="570" y="155" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#666">Server</text>
+  
+  <rect x="630" y="120" width="100" height="50" rx="5" fill="#fff" stroke="#137333" stroke-width="1"/>
+  <text x="680" y="140" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" font-weight="bold" fill="#137333">🌐 Web Search</text>
+  <text x="680" y="155" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#666">Server</text>
+  
+  <rect x="520" y="180" width="100" height="50" rx="5" fill="#fff" stroke="#137333" stroke-width="1"/>
+  <text x="570" y="200" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" font-weight="bold" fill="#137333">🔢 Calculator</text>
+  <text x="570" y="215" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#666">Server</text>
+  
+  <rect x="630" y="180" width="100" height="50" rx="5" fill="#fff" stroke="#137333" stroke-width="1"/>
+  <text x="680" y="200" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" font-weight="bold" fill="#137333">💾 Database</text>
+  <text x="680" y="215" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#666">Server</text>
+  
+  <rect x="575" y="240" width="100" height="50" rx="5" fill="#fff" stroke="#137333" stroke-width="1"/>
+  <text x="625" y="260" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" font-weight="bold" fill="#137333">⚙️ Custom</text>
+  <text x="625" y="275" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#666">Servers</text>
+  
+  <!-- Security Features Callout -->
+  <rect x="50" y="280" width="300" height="80" rx="5" fill="#fff3cd" stroke="#ffc107" stroke-width="1"/>
+  <text x="60" y="300" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#856404">🛡️ Security Features:</text>
+  <text x="60" y="318" font-family="Arial, sans-serif" font-size="10" fill="#856404">• Policy-based access control</text>
+  <text x="60" y="332" font-family="Arial, sans-serif" font-size="10" fill="#856404">• Real-time attack detection</text>
+  <text x="60" y="346" font-family="Arial, sans-serif" font-size="10" fill="#856404">• Tool poisoning prevention</text>
+  
+  <!-- Performance Callout -->
+  <rect x="450" y="320" width="300" height="60" rx="5" fill="#d1ecf1" stroke="#17a2b8" stroke-width="1"/>
+  <text x="460" y="340" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#0c5460">⚡ High Performance:</text>
+  <text x="460" y="358" font-family="Arial, sans-serif" font-size="10" fill="#0c5460">• Minimal latency overhead • Session state tracking</text>
+  
+  <!-- Arrow marker definition -->
+  <defs>
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#666"/>
+    </marker>
+  </defs>
+</svg> 

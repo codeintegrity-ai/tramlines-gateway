@@ -1,0 +1,94 @@
+/* Professional Font Configuration */
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600;700&display=swap");
+
+/* Root font variables for consistent theming */
+:root {
+  --md-text-font: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, sans-serif;
+  --md-code-font: "Fira Code", "JetBrains Mono", "Source Code Pro", "Consolas",
+    "Monaco", "Courier New", monospace;
+}
+
+/* Apply professional fonts to all text elements */
+.md-typeset {
+  font-family: var(--md-text-font);
+  font-weight: 400;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Heading fonts - slightly bolder weight for better hierarchy */
+.md-typeset h1,
+.md-typeset h2,
+.md-typeset h3,
+.md-typeset h4,
+.md-typeset h5,
+.md-typeset h6 {
+  font-family: var(--md-text-font);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+/* Navigation fonts */
+.md-nav__title,
+.md-nav__item,
+.md-tabs__link {
+  font-family: var(--md-text-font);
+  font-weight: 500;
+}
+
+/* Code and pre blocks */
+.md-typeset code,
+.md-typeset pre,
+.md-typeset kbd {
+  font-family: var(--md-code-font);
+  font-weight: 400;
+}
+
+/* Table fonts */
+.md-typeset table {
+  font-family: var(--md-text-font);
+  font-size: 0.9em;
+}
+
+/* Button and UI element fonts */
+.md-button,
+.md-search__input,
+.md-header__title {
+  font-family: var(--md-text-font);
+  font-weight: 500;
+}
+
+/* Enhanced Mermaid diagram styling for dark/light themes */
+
+/* General Mermaid container styling */
+.mermaid {
+  text-align: center;
+  margin: 2em 0;
+  padding: 1em;
+  border-radius: 8px;
+  background: transparent;
+}
+
+.mermaid svg {
+  max-width: 100%;
+  height: auto;
+  border-radius: 6px;
+}
+
+/* Dark theme (slate) styling */
+[data-md-color-scheme="slate"] .mermaid {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Simplified Mermaid styling - most styling now handled by inline Mermaid theme */
+
+/* Enhanced Code Block Font Styling - just the font changes */
+.md-typeset code,
+.md-typeset pre > code {
+  font-family: var(--md-code-font);
+  font-feature-settings: "liga" 1, "calt" 1; /* Enable ligatures for Fira Code */
+}

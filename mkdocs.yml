@@ -1,0 +1,199 @@
+# MkDocs configuration for Tramlines
+site_name: Tramlines
+site_description: Security guardrail system for MCP (Model Context Protocol) tool execution
+site_author: Tramlines Team
+site_url: https://docs.tramlines.io
+
+# Development server configuration
+dev_addr: "127.0.0.1:8080"
+
+# Repository information
+repo_name: tramlines-gateway
+repo_url: https://github.com/codeintegrity-ai/tramlines-gateway
+edit_uri: edit/main/docs/
+
+# Copyright
+copyright: Copyright &copy; 2025 Tramlines Team
+
+# Configuration
+theme:
+  name: material
+  language: en
+
+  # Color scheme - Pure black/white theme
+  palette:
+    scheme: slate
+    primary: black
+    accent: white
+
+  # Logo and favicon
+  logo: assets/logo.svg
+  icon:
+    repo: fontawesome/brands/github
+
+  # Features
+  features:
+    - navigation.instant
+    - navigation.tracking
+    - navigation.tabs
+    - navigation.tabs.sticky
+    - navigation.sections
+    - navigation.expand
+    - navigation.indexes
+    - navigation.top
+    - search.highlight
+    - search.suggest
+    - content.code.annotate
+    - content.code.copy
+    - content.tabs.link
+    - content.action.view
+
+# Using default Material theme styling
+
+# Plugins
+plugins:
+  - search:
+      separator: '[\s\-,:!=\[\]()"`/]+|\.(?!\d)|&[lg]t;|(?!\b)(?=[A-Z][a-z])'
+  - autorefs
+  - llmstxt:
+      markdown_description: |
+        Tramlines is a security guardrail system for MCP (Model Context Protocol) tool execution.
+        It provides a policy-based framework to control and monitor LLM tool interactions with external services.
+      sections:
+        Getting Started:
+          - getting-started/installation.md
+        Policy DSL:
+          - dsl/tramlines-language-reference.md
+          - dsl/policy-reference.md
+          - dsl/rule-reference.md
+          - dsl/extension-reference.md
+          - dsl/testing-reference.md
+        Security Policies:
+          - policies/generic-policies.md
+          - policies/server-specific-policies.md
+        Optional:
+          - reference.md
+  - mkdocstrings:
+      handlers:
+        python:
+          options:
+            # General
+            show_bases: true
+            show_source: true
+
+            # Headings
+            heading_level: 2
+            show_root_heading: true
+            show_root_toc_entry: true
+            show_root_full_path: true
+            show_object_full_path: false
+            show_category_heading: true
+
+            # Members
+            members_order: source
+            group_by_category: true
+            show_if_no_docstring: false
+            show_signature_annotations: true
+            signature_crossrefs: true
+
+            # Docstrings
+            docstring_style: google
+            merge_init_into_class: true
+
+            # Filters
+            filters:
+              - "!^_" # Exclude private members
+              - "^__init__$" # Include __init__ methods
+
+# Markdown extensions
+markdown_extensions:
+  # Python Markdown
+  - abbr
+  - admonition
+  - attr_list
+  - def_list
+  - footnotes
+  - md_in_html
+  - toc:
+      permalink: true
+      permalink_title: Anchor link to this section for reference
+  - tables
+
+  # Python Markdown Extensions
+  - pymdownx.arithmatex:
+      generic: true
+  - pymdownx.betterem:
+      smart_enable: all
+  - pymdownx.caret
+  - pymdownx.details
+  - pymdownx.emoji
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.keys
+  - pymdownx.magiclink:
+      normalize_issue_symbols: true
+      repo_url_shorthand: true
+      user: codeintegrity-ai
+      repo: tramlines-gateway
+  - pymdownx.mark
+  - pymdownx.smartsymbols
+  - pymdownx.snippets:
+      check_paths: true
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.tilde
+
+# Navigation
+nav:
+  - Tramlines: index.md
+  - Getting Started:
+      - Installation: getting-started/installation.md
+  - Policy DSL Reference:
+      - Overview: dsl/tramlines-language-reference.md
+      - Policy Reference: dsl/policy-reference.md
+      - Rule Reference: dsl/rule-reference.md
+      - Extension Reference: dsl/extension-reference.md
+      - Testing Reference: dsl/testing-reference.md
+  - Security Policies: policies/security-policies.md
+  - Source Code Reference: reference.md
+  - llm.txt: /llms.txt
+
+# Extra configuration
+extra:
+  # Version information
+  version:
+    provider: mike
+    default: latest
+
+  # Social links
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/codeintegrity-ai/tramlines-gateway
+      name: Tramlines on GitHub
+    - icon: fontawesome/solid/paper-plane
+      link: mailto:contact@codeintegrity.ai
+      name: Contact the team
+
+# Extra CSS for Mermaid dark theme fixes
+extra_css:
+  - stylesheets/extra.css
+
+# Validation
+validation:
+  omitted_files: warn
+  absolute_links: warn
+  unrecognized_links: warn
+
+# Watch additional files
+watch:
+  - src/tramlines/
+  - README.md

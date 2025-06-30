@@ -1,0 +1,81 @@
+[project]
+name = "tramlines-gateway"
+version = "0.1.0"
+description = "Secure MCP proxy gateway with real-time policy enforcement and threat detection"
+license = {text = "MIT"}
+authors = [{ name = "Steven", email = "steven@codeintegrity.ai" }]
+requires-python = ">=3.10,<3.12"
+dependencies = [
+    "llamafirewall>=1.0.3",
+    "presidio-analyzer>=2.2.358",
+    "presidio-anonymizer>=2.2.358",
+    "spacy>=3.8.0,<3.9.0",
+    "en_core_web_lg @ https://github.com/explosion/spacy-models/releases/download/en_core_web_lg-3.8.0/en_core_web_lg-3.8.0-py3-none-any.whl",
+    "fastmcp == 2.9.2",
+    "autoflake>=2.3.1",
+    "python-dotenv>=1.1.1",
+]
+
+[project.scripts]
+tl = "tramlines.cli:app"
+
+[project.urls]
+Homepage = "https://tramlines.io"
+Repository = "https://github.com/codeintegrity-ai/tramlines-gateway"
+Documentation = "https://docs.tramlines.io"
+
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.coverage.run]
+source = ["src/tramlines"]
+omit = [
+    "*/tests/*",
+    "*/test_*"
+]
+
+[tool.uv.workspace]
+members = [
+    "tramlines",
+]
+
+
+[tool.uv.sources]
+tramlines = { path = "src/tramlines", editable = true }
+
+[dependency-groups]
+dev = [
+    # Testing
+    "pytest>=8.4.0",
+    "pytest-asyncio>=1.0.0",
+    "pytest-bdd>=8.1.0",
+    "pytest-cov>=6.1.1",
+    "pytest-mock>=3.14.1",
+    
+    # Linting & Type Checking  
+    "ruff>=0.11.13",
+    "mypy>=1.16.1",
+    
+    # Development Tools
+    "wheel>=0.40.0",
+    "uvicorn>=0.30.0",
+]
+
+docs = [
+    "mkdocs>=1.6.0",
+    "mkdocs-material>=9.5.0",
+    "mkdocs-autorefs>=1.2.0",
+    "mkdocstrings[python]>=0.26.0",
+    "mkdocs-gen-files>=0.5.0",
+    "mkdocs-literate-nav>=0.6.0",
+    "mkdocs-llmstxt>=0.2.0",
+]
+
+[tool.pytest.ini_options]
+markers = [
+    "performance: marks tests as performance tests (deselect with '-m \"not performance\"')",
+]
