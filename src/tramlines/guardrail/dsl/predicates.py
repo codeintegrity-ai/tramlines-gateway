@@ -90,7 +90,7 @@ class NotPredicate(BasePredicate):
 class ValueBuilder(Generic[T]):
     """Creates predicates when comparison operators are used."""
 
-    def __init__(self, extractor: Callable[[ToolCall, CallHistory], T]):
+    def __init__(self, extractor: Callable[[ToolCall, CallHistory], T | None]):
         self._extractor = extractor
 
     def __eq__(self, other: Any) -> Predicate:  # type: ignore[override]
@@ -166,7 +166,7 @@ class ComparisonPredicate(BasePredicate, Generic[T]):
 
     def __init__(
         self,
-        extractor: Callable[[ToolCall, CallHistory], T],
+        extractor: Callable[[ToolCall, CallHistory], T | None],
         comparison: Callable[[T, Any], bool],
         target: Any,
     ):
