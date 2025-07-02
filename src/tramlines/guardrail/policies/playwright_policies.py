@@ -1,7 +1,7 @@
 """
 Playwright Browser Automation Policy
 
-This policy blocks a tool if it is called 5 times in a row and 
+This policy blocks a tool if it is called 5 times in a row and
 blocks a sequence of n tool calls (where n >= 3 and n <= 6) repeats >= 3 times contiguously.
 """
 
@@ -38,7 +38,10 @@ PLAYWRIGHT_BROWSER_TOOLS = [
     "browser_wait_for",
 ]
 
-def _tool_called_five_times_contiguously(current_call: ToolCall, session_history: CallHistory) -> bool:
+
+def _tool_called_five_times_contiguously(
+    current_call: ToolCall, session_history: CallHistory
+) -> bool:
     """
     Check if the current tool has been called 5 times in a contiguous sequence.
     Note: The current call is already in the history when this is evaluated.
@@ -46,37 +49,39 @@ def _tool_called_five_times_contiguously(current_call: ToolCall, session_history
     # We need at least 5 calls to have 5 consecutive calls
     if len(session_history.calls) < 5:
         return False
-    
+
     # Get the last 5 calls from history (including the current call)
     last_five_calls = session_history.calls[-5:]
-    
+
     # Check if all 5 calls are the same tool
     first_tool_name = last_five_calls[0].name
     return all(call.name == first_tool_name for call in last_five_calls)
 
 
-def _sequence_repeats_more_than_three_times(current_call: ToolCall, session_history: CallHistory) -> bool:
+def _sequence_repeats_more_than_three_times(
+    current_call: ToolCall, session_history: CallHistory
+) -> bool:
     """
     Check if a sequence of n tool calls (where n >= 3 and n <= 6) repeats >= 3 times contiguously.
     """
     calls = session_history.calls
-    
+
     # Need at least 9 calls for a 3-tool pattern repeated 3 times
     if len(calls) < 9:
         return False
-    
+
     # Check for patterns of different lengths (3 to 6 tools)
     for pattern_length in range(3, min(7, len(calls) // 3 + 1)):
         # Check if we have enough calls for 3 repetitions of this pattern
         if len(calls) < pattern_length * 3:
             continue
-            
+
         # Get the most recent calls that could form 3+ repetitions
-        recent_calls = calls[-(pattern_length * 3):]
-        
+        recent_calls = calls[-(pattern_length * 3) :]
+
         # Extract the pattern (first occurrence)
         pattern = [call.name for call in recent_calls[:pattern_length]]
-        
+
         # Check if this pattern repeats 3 times
         is_repeating = True
         for i in range(3):
@@ -86,11 +91,12 @@ def _sequence_repeats_more_than_three_times(current_call: ToolCall, session_hist
             if current_segment != pattern:
                 is_repeating = False
                 break
-        
+
         if is_repeating:
             return True
-    
+
     return False
+
 
 # The main policy object to be imported
 policy = Policy(
